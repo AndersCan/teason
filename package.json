@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "ts-node src/index-cli.ts",
+    "compile": "tsc -p .",
     "serve": "json-server --watch db.json",
     "serve-norm": "json-server --watch db-normalize.json"
   },

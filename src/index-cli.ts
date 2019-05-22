@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Debug from 'debug';
 import { writeFile } from 'fs';
 import { generateDatabase } from './generate-database';
