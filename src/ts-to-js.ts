@@ -5,11 +5,6 @@ import Debug from 'debug';
 import * as TJS from 'typescript-json-schema';
 const debug = Debug('teason-server:generateDatabase');
 
-const inputFiles = readdirSync(resolve('./types/')).map((filename) =>
-  resolve(`./types/${filename}`)
-);
-
-debug(`TS files found: ${inputFiles.join('\n')}`);
 // optionally pass argument to schema generator
 const settings: TJS.PartialArgs = {
   required: true,
@@ -21,13 +16,15 @@ const compilerOptions: TJS.CompilerOptions = {
   strictNullChecks: true
 };
 
-const program = TJS.getProgramFromFiles(inputFiles, compilerOptions);
-const generator = TJS.buildGenerator(program, settings);
-
-export function getSchema(interfaceName: string) {
+export function getSchema(inputFiles: string[], interfaceName: string) {
+  const program = TJS.getProgramFromFiles(inputFiles, compilerOptions);
+  const generator = TJS.buildGenerator(program, settings);
   if (generator) {
     const schema = generator.getSchemaForSymbol(interfaceName);
+    debug('created schema');
+
     return schema;
   }
+  debug('failed to create generator');
   return {};
 }

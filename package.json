@@ -2,6 +2,9 @@
   "name": "teason-server",
   "version": "1.0.0",
   "private": true,
+  "bin": {
+    "teason": "./lib/src/index-cli.js"
+  },
   "description": "Generate a mock api with TypeScript interfaces",
   "main": "index.js",
   "scripts": {
@@ -9,7 +12,8 @@
     "build": "ts-node src/index-cli.ts",
     "compile": "tsc -p .",
     "serve": "json-server --watch db.json",
-    "serve-norm": "json-server --watch db-normalize.json"
+    "serve-norm": "json-server --watch db-normalize.json",
+    "test-bin": "teason -t types -s schema.js --output-file db.json"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +24,7 @@
     "@types/faker": "^4.1.5",
     "@types/node": "^12.0.2",
     "chance": "^1.0.18",
+    "commander": "^2.20.0",
     "debug": "^4.1.1",
     "faker": "^4.1.0",
     "fastify": "^2.3.0",

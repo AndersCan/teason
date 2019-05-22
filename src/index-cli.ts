@@ -1,9 +1,31 @@
 #!/usr/bin/env node
 
 import Debug from 'debug';
-import { writeFile } from 'fs';
+import { writeFile, readdirSync } from 'fs';
 import { generateDatabase } from './generate-database';
 import { normalize, schema } from 'normalizr';
+
+import program from 'commander';
+import { resolve } from 'path';
+
+program
+  .option(
+    '-o, --output-file <file_path>',
+    'output file to store the generated JSON'
+  )
+  .option(
+    '-i, --interface-name <name>',
+    'main interface to begin with',
+    'database'
+  )
+  .option('-t, --types-folder <folder>', 'folder path with typescript types')
+  .option('-s, --schemaScript <script_location>', 'script that returns schema')
+  .option(
+    '-n, --keepNormalized',
+    'do not convert to array readable by json-server'
+  );
+
+program.parse(process.argv);
 
 const debug = Debug('teason-server:cli');
 
@@ -13,54 +35,63 @@ const debug = Debug('teason-server:cli');
 // return schema?
 // allow to extend 'json-schema-faker'
 async function main() {
-  debug('building');
-  const { json, schema: skjema } = await generateDatabase();
-  debug('writing to file');
+  const {
+    interfaceName,
+    typesFolder,
+    schemaScript,
+    outputFile,
+    keepNormalized
+  } = program;
 
-  // Define a users schema
-  const product = new schema.Entity('products');
+  debug('building', typesFolder, interfaceName);
 
-  // Define your comments schema
-  const category = new schema.Entity('categories', {
-    products: [product]
-  });
+  const { json, schema: skjema } = await generateDatabase(
+    typesFolder,
+    interfaceName
+  );
 
-  // Define your article
-  const database = new schema.Entity('categories', {
-    categories: [category]
-  });
+  if (schemaScript) {
+    debug('reading schema from', schemaScript);
 
-  const normalizedData = normalize(json, database);
+    const beforeSaveScript = await import(resolve(schemaScript));
+    const schema = await beforeSaveScript.default.getSchema();
+    debug('got schema from', schemaScript);
 
-  writeFile('./db.json', JSON.stringify(json, null, 2), (err) => {
-    if (err) {
-      console.log('erroronio!');
-    } else {
-      console.log('success!');
-    }
-  });
+    const normalizedData = normalize(json, schema);
 
-  const jsonServerFormated = normalizedData.entities;
-  for (let prop in jsonServerFormated) {
-    console.log(prop);
-    jsonServerFormated[prop] = Object.values(jsonServerFormated[prop]);
-  }
-  writeFile(
-    './db-normalize.json',
-    JSON.stringify(jsonServerFormated, null, 2),
-    (err) => {
-      if (err) {
-        console.log('erroronio!');
-      } else {
-        console.log('success!');
+    const jsonServerFormated = normalizedData.entities;
+
+    if (!keepNormalized) {
+      debug(`normalizing json`);
+      for (let prop in jsonServerFormated) {
+        debug(`creating ${prop}`);
+        jsonServerFormated[prop] = Object.values(jsonServerFormated[prop]);
       }
     }
-  );
-  writeFile('./db-skjema.json', JSON.stringify(skjema, null, 2), (err) => {
+
+    return writeFile(
+      outputFile,
+      JSON.stringify(normalizedData, null, 2),
+      (err) => {
+        if (err) {
+          debug('erroronio!');
+        } else {
+          debug('success!');
+        }
+      }
+    );
+  }
+
+  // if no normalzing
+  debug(`skipping normalizing json`);
+
+  debug('writing to file');
+
+  writeFile(outputFile, JSON.stringify(json, null, 2), (err) => {
     if (err) {
-      console.log('erroronio!');
+      debug('erroronio!');
     } else {
-      console.log('success!');
+      debug('success!');
     }
   });
 }
