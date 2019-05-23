@@ -1,0 +1,7 @@
+{
+  "typesFolder": "types",
+  "interfaceName": "Database",
+  "jsonOutputPath": "out.json",
+  "schemaOutputPath": "out.schema.json",
+  "validationKeywords": ["faker"]
+}

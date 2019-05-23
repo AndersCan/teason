@@ -11,18 +11,19 @@ const EXTENSIONS_RE = /.*.(ts|tsx)$/;
 
 export async function generateDatabase(
   typeFolderPath: string,
-  interfaceName: string
+  interfaceName: string,
+  validationKeywords: string[]
 ) {
   debug(`generating schema from interface ${interfaceName}`);
 
   const inputFiles = readdirSync(resolve(typeFolderPath))
     .filter((filename) => EXTENSIONS_RE.test(filename))
-    .map((filename) => resolve(`./${typeFolderPath}/${filename}`));
+    .map((filename) => resolve(typeFolderPath, filename));
 
   debug(`filtering for ${EXTENSIONS_RE}`);
   debug(`TS files found: \n${inputFiles.join('\n')}`);
 
-  const schema = getSchema(inputFiles, interfaceName);
+  const schema = getSchema(inputFiles, interfaceName, validationKeywords);
 
   const json = await getJsonOf(schema);
 

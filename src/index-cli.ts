@@ -1,10 +1,23 @@
 #!/usr/bin/env node
 
 import Debug from 'debug';
+import cosmiconfig from 'cosmiconfig';
+import program from 'commander';
 import { writeFile } from 'fs';
+
 import { generateDatabase } from './generate-database';
 
-import program from 'commander';
+const debug = Debug('teason:cli');
+
+function parseKeywords(input: unknown): string[] {
+  if (typeof input === 'string') {
+    const split = input.split(',');
+    debug('unable to parse keyword', input);
+    return split;
+  }
+  debug('unable to parse keyword', input);
+  return ['faker'];
+}
 
 program
   .description(
@@ -19,12 +32,13 @@ program
   .option(
     '-s, --schema-output-path <file_path>',
     'output file to store the generated Schema'
+  )
+  .option(
+    '-v, --validation-keywords <comma separated list>',
+    'keywords of extra annotation to accept ex: "title,test,data" ',
+    parseKeywords
   );
 
-program.parse(process.argv);
-
-const debug = Debug('teason:cli');
-debug(program.opts());
 /**
  * @todo
  * accept flag for watch mode
@@ -32,14 +46,49 @@ debug(program.opts());
  * make cli import main fn and pass options
  */
 
-main();
-async function main() {
+program.parse(process.argv);
+const cliProps = program.opts();
+
+// TODO
+if (cliProps.validationKeywords === undefined) {
+  delete cliProps.validationKeywords;
+}
+
+const explorer = cosmiconfig('teason');
+explorer
+  .search()
+  .then((config) => {
+    if (config) {
+      debug('using config file found at', config.filepath);
+      return { ...config.config, ...cliProps };
+    } else {
+      debug('no config file found');
+      return cliProps;
+    }
+  })
+  .then((props) => {
+    debug('teason called with: ');
+    debug(props);
+    return (props as any) as TeasonProps;
+  })
+  .then(main)
+  .catch((err) => console.log({ err }));
+
+interface TeasonProps {
+  interfaceName: string;
+  typesFolder: string;
+  jsonOutputPath?: string;
+  schemaOutputPath?: string;
+  validationKeywords: string[];
+}
+async function main(props: TeasonProps) {
   const {
     interfaceName,
     typesFolder,
     jsonOutputPath,
-    schemaOutputPath
-  } = program;
+    schemaOutputPath,
+    validationKeywords
+  } = props;
 
   if (!interfaceName || !typesFolder) {
     console.error('invalid interfaceName or typesFolder given', {
@@ -60,7 +109,8 @@ async function main() {
 
   const { json, schema: skjema } = await generateDatabase(
     typesFolder,
-    interfaceName
+    interfaceName,
+    validationKeywords
   );
 
   writeJsonToFile(schemaOutputPath, skjema);

@@ -25,15 +25,30 @@ Teason requires two things to run
 
 > Not defining `output-paths` will result in no output (a dry-run)
 
-Full options:
+> Changing `validation-keywords` will remove the default value (`faker`)
 
 ```bash
 Options:
-  -t, --types-folder <folder>           folder path with typescript types
-  -i, --interface-name <name>           main interface to begin with
-  -j, --json-output-path <file_path>    output file to store the generated JSON
-  -s, --schema-output-path <file_path>  output file to store the generated Schema
-  -h, --help                            output usage information
+  -t, --types-folder <folder>                       folder path with typescript types
+  -i, --interface-name <name>                       main interface to begin with
+  -j, --json-output-path <file_path>                output file to store the generated JSON
+  -s, --schema-output-path <file_path>              output file to store the generated Schema
+  -v, --validation-keywords <comma separated list>  keywords of extra annotation to accept ex: "title,test,data"  (default: ["faker"])
+  -h, --help                                        output usage information
+```
+
+### config options
+
+You can also store your config in a `.teasonrc` file
+
+```json
+{
+  "typesFolder": "types",
+  "interfaceName": "Database",
+  "jsonOutputPath": "out.json",
+  "schemaOutputPath": "out.schema.json",
+  "validationKeywords": ["faker"]
+}
 ```
 
 ## Schema
