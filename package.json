@@ -2,10 +2,13 @@
   "name": "teason",
   "version": "0.0.1",
   "bin": {
-    "teason": "./lib/src/index-cli.js"
+    "teason": "lib/src/index-cli.js"
   },
   "description": "Generates JSON schema and JSON data from typescript definitions",
-  "main": "index.js",
+  "main": "lib/src/index-cli.js",
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "cli": "ts-node ./src/index-cli.ts",
     "build": "npm run build:lib && npm run build:examples",
@@ -13,7 +16,7 @@
     "build:examples": "npm run build:examples:default && npm run build:examples:normalize",
     "build:examples:default": "ts-node src/index-cli.ts -t examples/types -i Database -j examples/out.json -s examples/out.schema.json",
     "build:examples:normalize": "ts-node examples/post-process.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build:lib"
   },
   "keywords": [
     "typescript",
