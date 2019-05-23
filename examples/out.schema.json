@@ -1,0 +1,195 @@
+{
+  "type": "object",
+  "properties": {
+    "categories": {
+      "minItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "faker": "random.number",
+            "type": "string"
+          },
+          "name": {
+            "faker": "commerce.department",
+            "type": "string"
+          },
+          "products": {
+            "minItems": 3,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "faker": "random.number",
+                  "type": "string"
+                },
+                "name": {
+                  "faker": "commerce.productName",
+                  "type": "string"
+                },
+                "price": {
+                  "faker": "commerce.price",
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "description": {
+                  "minimum": 0,
+                  "faker": "lorem.paragraph",
+                  "type": "string"
+                },
+                "imageUrl": {
+                  "minimum": 0,
+                  "faker": "image.animals",
+                  "type": "string"
+                },
+                "quality": {
+                  "enum": [
+                    "Basic product",
+                    "Premium product"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description",
+                "id",
+                "imageUrl",
+                "name",
+                "price",
+                "quality"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "products"
+        ]
+      }
+    }
+  },
+  "required": [
+    "categories"
+  ],
+  "definitions": {
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "faker": "random.number",
+          "type": "string"
+        },
+        "name": {
+          "faker": "commerce.department",
+          "type": "string"
+        },
+        "products": {
+          "minItems": 3,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "faker": "random.number",
+                "type": "string"
+              },
+              "name": {
+                "faker": "commerce.productName",
+                "type": "string"
+              },
+              "price": {
+                "faker": "commerce.price",
+                "minimum": 0,
+                "type": "integer"
+              },
+              "description": {
+                "minimum": 0,
+                "faker": "lorem.paragraph",
+                "type": "string"
+              },
+              "imageUrl": {
+                "minimum": 0,
+                "faker": "image.animals",
+                "type": "string"
+              },
+              "quality": {
+                "enum": [
+                  "Basic product",
+                  "Premium product"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "id",
+              "imageUrl",
+              "name",
+              "price",
+              "quality"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "products"
+      ]
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "faker": "random.number",
+          "type": "string"
+        },
+        "name": {
+          "faker": "commerce.productName",
+          "type": "string"
+        },
+        "price": {
+          "faker": "commerce.price",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "description": {
+          "minimum": 0,
+          "faker": "lorem.paragraph",
+          "type": "string"
+        },
+        "imageUrl": {
+          "minimum": 0,
+          "faker": "image.animals",
+          "type": "string"
+        },
+        "quality": {
+          "enum": [
+            "Basic product",
+            "Premium product"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "id",
+        "imageUrl",
+        "name",
+        "price",
+        "quality"
+      ]
+    },
+    "Quality": {
+      "enum": [
+        "Basic product",
+        "Premium product"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

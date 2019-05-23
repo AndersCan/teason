@@ -1,6 +1,6 @@
 {
   "name": "teason",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "bin": {
     "teason": "./lib/src/index-cli.js"
@@ -8,27 +8,33 @@
   "description": "Generate a mock api with TypeScript interfaces",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
-    "build": "ts-node src/index-cli.ts",
-    "compile": "tsc"
+    "cli": "ts-node ./src/index-cli.ts",
+    "build": "npm run build:lib && npm run build:examples",
+    "build:lib": "tsc -p .",
+    "build:examples": "npm run build:examples:default && npm run build:examples:normalize",
+    "build:examples:default": "ts-node src/index-cli.ts -t examples/types -i Database -j examples/out.json -s examples/out.schema.json",
+    "build:examples:normalize": "ts-node examples/post-process.ts",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/chance": "^1.0.4",
-    "@types/debug": "^4.1.4",
-    "@types/faker": "^4.1.5",
-    "@types/node": "^12.0.2",
     "chance": "^1.0.18",
     "commander": "^2.20.0",
     "debug": "^4.1.1",
     "faker": "^4.1.0",
     "json-schema-faker": "^0.5.0-rc16",
-    "nodemon": "^1.19.0",
-    "normalizr": "^3.3.0",
-    "ts-node": "^8.1.0",
     "typescript": "^3.4.5",
     "typescript-json-schema": "^0.38.0"
+  },
+  "devDependencies": {
+    "ts-node": "^8.1.0",
+    "nodemon": "^1.19.0",
+    "@types/chance": "^1.0.4",
+    "@types/debug": "^4.1.4",
+    "@types/faker": "^4.1.5",
+    "normalizr": "^3.3.0",
+    "@types/node": "^12.0.2"
   }
 }

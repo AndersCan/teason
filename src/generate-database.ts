@@ -7,17 +7,19 @@ import { resolve } from 'path';
 
 const debug = Debug('teason:generateDatabase');
 
+const EXTENSIONS_RE = /.*.(ts|tsx)$/;
+
 export async function generateDatabase(
   typeFolderPath: string,
-  inputInterfaceName: string
+  interfaceName: string
 ) {
-  const interfaceName = capitalize(inputInterfaceName);
-
   debug(`generating schema from interface ${interfaceName}`);
 
-  const inputFiles = readdirSync(resolve(typeFolderPath)).map((filename) =>
-    resolve(`./${typeFolderPath}/${filename}`)
-  );
+  const inputFiles = readdirSync(resolve(typeFolderPath))
+    .filter((filename) => EXTENSIONS_RE.test(filename))
+    .map((filename) => resolve(`./${typeFolderPath}/${filename}`));
+
+  debug(`filtering for ${EXTENSIONS_RE}`);
   debug(`TS files found: \n${inputFiles.join('\n')}`);
 
   const schema = getSchema(inputFiles, interfaceName);
@@ -25,8 +27,4 @@ export async function generateDatabase(
   const json = await getJsonOf(schema);
 
   return { json, schema };
-}
-
-function capitalize(str: string) {
-  return `${str[0].toUpperCase()}${str.slice(1)}`;
 }

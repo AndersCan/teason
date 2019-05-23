@@ -1,0 +1,134 @@
+{
+  "categories": [
+    {
+      "id": "50304",
+      "name": "Electronics",
+      "products": [
+        {
+          "description": "Sed tempora aspernatur voluptatem ipsam. Sint molestias consequatur tempora provident commodi. Porro consequatur mollitia optio.",
+          "id": "22422",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Handmade Granite Pizza",
+          "price": 110,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Eaque ab error. Maxime esse aut non nihil corrupti. Aut dolores tempore fuga hic modi. Ea sed delectus qui nam recusandae culpa dolorum dolor.",
+          "id": "35447",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Unbranded Metal Shirt",
+          "price": 724,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Eos commodi dolorem fugit est facere ratione accusantium numquam qui. Sint autem sed perspiciatis iste quis beatae qui ratione. Aliquid rerum optio totam non eum. Error recusandae dolores cumque.",
+          "id": "50586",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Handmade Concrete Ball",
+          "price": 270,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Ducimus qui commodi est ipsum qui consequuntur error facere error. Molestiae ea impedit ea quos iusto deleniti. Magni omnis corrupti pariatur quia. Ullam aut voluptas est.",
+          "id": "69746",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Practical Plastic Pizza",
+          "price": 964,
+          "quality": "Basic product"
+        },
+        {
+          "description": "Laudantium repellat provident in doloremque consequatur quia quis. Repudiandae rerum aut expedita. Qui ut incidunt rerum corrupti deleniti labore. Sunt cumque impedit ad sint dolores. Autem voluptate maiores sed itaque beatae sunt aperiam facere nam. Aut dolorum iure impedit neque deserunt.",
+          "id": "97474",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Handcrafted Frozen Pants",
+          "price": 115,
+          "quality": "Premium product"
+        }
+      ]
+    },
+    {
+      "id": "85952",
+      "name": "Kids",
+      "products": [
+        {
+          "description": "Doloribus quo cumque a velit. Natus autem quis eligendi ea iure recusandae. Neque at enim itaque minima perspiciatis aperiam. Maxime repellat a ratione quaerat exercitationem quisquam aliquam.",
+          "id": "56098",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Tasty Frozen Tuna",
+          "price": 133,
+          "quality": "Basic product"
+        },
+        {
+          "description": "Animi aut blanditiis accusamus exercitationem necessitatibus recusandae dolor. Rerum quaerat ut esse repellendus non. Id quidem reprehenderit earum officiis. Voluptatem id rerum dignissimos. Voluptates officia explicabo atque temporibus aspernatur recusandae. Quia unde ratione autem pariatur quaerat autem veritatis.",
+          "id": "62183",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Fantastic Metal Pants",
+          "price": 357,
+          "quality": "Basic product"
+        },
+        {
+          "description": "Totam nam explicabo ut dolorem qui et aut. Soluta minima enim molestias amet qui omnis laborum. Accusantium dolor adipisci facere doloremque commodi aliquid. Rerum inventore et et esse a vel unde. Ullam et esse aperiam delectus. Dolores quas voluptas saepe.",
+          "id": "199",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Ergonomic Steel Bike",
+          "price": 426,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Nihil modi itaque sint aliquid excepturi vel fugit quas. Aut doloremque esse et eos non et enim saepe aperiam. Voluptatem excepturi sint ullam quis repellendus iste.",
+          "id": "93969",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Practical Metal Sausages",
+          "price": 781,
+          "quality": "Basic product"
+        }
+      ]
+    },
+    {
+      "id": "39747",
+      "name": "Kids",
+      "products": [
+        {
+          "description": "Libero inventore aut eaque dicta qui saepe saepe consequatur dolores. Cupiditate quisquam fugiat dolores molestiae perferendis et. Quam expedita aut aspernatur veritatis hic est. Aut aut et in perspiciatis unde voluptate.",
+          "id": "51585",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Small Rubber Shoes",
+          "price": 825,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Sed beatae veniam voluptatem eos magnam et. Nam numquam occaecati in illo sed dolores id. Nihil cumque quo et. Asperiores vel asperiores voluptas eum deleniti distinctio consequatur. Qui accusamus ut qui. Vitae dolorem voluptatem ut ipsum enim at non sit voluptatem.",
+          "id": "9653",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Incredible Metal Table",
+          "price": 104,
+          "quality": "Basic product"
+        },
+        {
+          "description": "Qui mollitia occaecati quidem commodi itaque aut cumque. Earum sit magnam. Quis velit aut. Sit omnis vel tempore. Labore enim est dolorem et quia eligendi tempora. Explicabo qui non rerum rerum non.",
+          "id": "59019",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Awesome Metal Chicken",
+          "price": 224,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Ut aspernatur dolor qui illo tenetur. Aspernatur quae eum. Quia aperiam ut deserunt delectus sit incidunt ex ut natus.",
+          "id": "44756",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Intelligent Fresh Shirt",
+          "price": 131,
+          "quality": "Premium product"
+        },
+        {
+          "description": "Et similique et tempore illo labore natus non fuga velit. Omnis eligendi voluptatem rerum. Nobis suscipit sed earum dolorem consequuntur.",
+          "id": "63652",
+          "imageUrl": "http://lorempixel.com/640/480/animals",
+          "name": "Unbranded Frozen Gloves",
+          "price": 958,
+          "quality": "Basic product"
+        }
+      ]
+    }
+  ]
+}
