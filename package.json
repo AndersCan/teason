@@ -1,6 +1,6 @@
 {
   "name": "teason",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "bin": {
     "teason": "./lib/src/index-cli.js"
   },
