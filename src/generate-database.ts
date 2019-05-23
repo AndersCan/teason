@@ -5,7 +5,7 @@ import { readdirSync } from 'fs';
 import { resolve } from 'path';
 // Declare a route
 
-const debug = Debug('teason-server:generateDatabase');
+const debug = Debug('teason:generateDatabase');
 
 export async function generateDatabase(
   typeFolderPath: string,

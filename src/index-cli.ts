@@ -8,43 +8,24 @@ import { normalize } from 'normalizr';
 import program from 'commander';
 import { resolve } from 'path';
 
-enum Type {
-  JSON = 'json',
-  SCHEMA = 'schema'
-}
-
-function parseType(input: unknown): Type {
-  switch (input) {
-    case Type.JSON: {
-      return Type.JSON;
-    }
-    case Type.SCHEMA: {
-      return Type.SCHEMA;
-    }
-    default: {
-      return Type.JSON;
-    }
-  }
-}
-
 program
   .description(
     'Creates a JSON schema from the given TypeScript interfaces. Can also generate mock data using faker.js'
   )
-  .option(
-    '-J, --json-output <file_path>',
-    'output file to store the generated JSON'
-  )
-  .option(
-    '-S, --schema-output <file_path>',
-    'output file to store the generated JSON'
-  )
+  .option('-t, --types-folder <folder>', 'folder path with typescript types')
   .option(
     '-i, --interface-name <name>',
     'main interface to begin with',
     'database'
   )
-  .option('-t, --types-folder <folder>', 'folder path with typescript types')
+  .option(
+    '-J, --json-output-path <file_path>',
+    'output file to store the generated JSON'
+  )
+  .option(
+    '-S, --schema-output-path <file_path>',
+    'output file to store the generated JSON'
+  )
   .option('-s, --schema-script <script_location>', '')
   .option(
     '-n, --no-normalized',
@@ -53,13 +34,13 @@ program
 
 program.parse(process.argv);
 
-const debug = Debug('teason-server:cli');
+const debug = Debug('teason:cli');
 debug(program.opts());
-// todo: accept database file name.
-// typescript type folders
-// accept flag for watch mode
-// return schema?
-// allow to extend 'json-schema-faker'
+/**
+ * @todo
+ * accept flag for watch mode
+ * allow to extend 'json-schema-faker'
+ */
 
 main();
 async function main() {
@@ -67,8 +48,8 @@ async function main() {
     interfaceName,
     typesFolder,
     schemaScript,
-    jsonOutput,
-    schemaOutput,
+    jsonOutputPath,
+    schemaOutputPath,
     normalized
   } = program;
 
@@ -79,7 +60,7 @@ async function main() {
     interfaceName
   );
 
-  writeJsonToFile(schemaOutput, skjema);
+  writeJsonToFile(schemaOutputPath, skjema);
 
   if (schemaScript) {
     debug('reading schema from', schemaScript);
@@ -100,7 +81,7 @@ async function main() {
       }
     }
 
-    return writeJsonToFile(jsonOutput, jsonServerFormated);
+    return writeJsonToFile(jsonOutputPath, jsonServerFormated);
   }
 
   // if no normalzing
@@ -108,7 +89,7 @@ async function main() {
 
   debug('writing to file');
 
-  writeJsonToFile(jsonOutput, json);
+  writeJsonToFile(jsonOutputPath, json);
 }
 
 function writeJsonToFile(filepath: unknown, data: object): void {

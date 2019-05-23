@@ -1,5 +1,5 @@
 {
-  "name": "teason-server",
+  "name": "teason",
   "version": "1.0.0",
   "private": true,
   "bin": {
@@ -10,10 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "ts-node src/index-cli.ts",
-    "compile": "tsc",
-    "serve": "json-server --watch db.json",
-    "serve-norm": "json-server --watch db-normalize.json",
-    "test-bin": "teason -t types -s schema.js --output-file db.json"
+    "compile": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -27,9 +24,7 @@
     "commander": "^2.20.0",
     "debug": "^4.1.1",
     "faker": "^4.1.0",
-    "fastify": "^2.3.0",
     "json-schema-faker": "^0.5.0-rc16",
-    "json-server": "^0.15.0",
     "nodemon": "^1.19.0",
     "normalizr": "^3.3.0",
     "ts-node": "^8.1.0",

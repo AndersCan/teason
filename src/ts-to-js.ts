@@ -1,9 +1,7 @@
-import { resolve } from 'path';
-import { readdirSync } from 'fs';
 import Debug from 'debug';
 
 import * as TJS from 'typescript-json-schema';
-const debug = Debug('teason-server:generateDatabase');
+const debug = Debug('teason:ts-to-js');
 
 // optionally pass argument to schema generator
 const settings: TJS.PartialArgs = {
