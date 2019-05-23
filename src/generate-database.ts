@@ -16,7 +16,7 @@ export async function generateDatabase(
   debug(`generating schema from interface ${interfaceName}`);
 
   const inputFiles = readdirSync(resolve(typeFolderPath)).map((filename) =>
-    resolve(`./types/${filename}`)
+    resolve(`./${typeFolderPath}/${filename}`)
   );
   debug(`TS files found: \n${inputFiles.join('\n')}`);
 

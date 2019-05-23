@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "ts-node src/index-cli.ts",
-    "compile": "tsc -p .",
+    "compile": "tsc",
     "serve": "json-server --watch db.json",
     "serve-norm": "json-server --watch db-normalize.json",
     "test-bin": "teason -t types -s schema.js --output-file db.json"
