@@ -1,11 +1,10 @@
 {
   "name": "teason",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.0",
   "bin": {
     "teason": "./lib/src/index-cli.js"
   },
-  "description": "Generate a mock api with TypeScript interfaces",
+  "description": "Generates JSON schema and JSON data from typescript definitions",
   "main": "index.js",
   "scripts": {
     "cli": "ts-node ./src/index-cli.ts",
@@ -16,9 +15,18 @@
     "build:examples:normalize": "ts-node examples/post-process.ts",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "json",
+    "schema",
+    "generator"
+  ],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndersCan/teason"
+  },
   "dependencies": {
     "chance": "^1.0.18",
     "commander": "^2.20.0",
@@ -30,7 +38,6 @@
   },
   "devDependencies": {
     "ts-node": "^8.1.0",
-    "nodemon": "^1.19.0",
     "@types/chance": "^1.0.4",
     "@types/debug": "^4.1.4",
     "@types/faker": "^4.1.5",
