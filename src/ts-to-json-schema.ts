@@ -1,7 +1,7 @@
 import Debug from 'debug';
 
 import * as TJS from 'typescript-json-schema';
-const debug = Debug('teason:ts-to-js');
+const debug = Debug('teason:ts-to-json-schema');
 
 // optionally pass argument to schema generator
 
@@ -13,13 +13,14 @@ const compilerOptions: TJS.CompilerOptions = {
 export function getSchema(
   inputFiles: string[],
   interfaceName: string,
-  validationKeywords: string[]
+  validationKeywords: string[] = []
 ) {
   const program = TJS.getProgramFromFiles(inputFiles, compilerOptions);
   const settings: TJS.PartialArgs = {
     required: true,
     validationKeywords
   };
+  debug('validationKeywords', validationKeywords);
   const generator = TJS.buildGenerator(program, settings);
   if (generator) {
     const schema = generator.getSchemaForSymbol(interfaceName);

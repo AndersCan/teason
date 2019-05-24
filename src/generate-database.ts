@@ -1,5 +1,5 @@
 import Debug from 'debug';
-import { getSchema } from './ts-to-js';
+import { getSchema } from './ts-to-json-schema';
 import { getJsonOf } from './schema-to-json';
 import { readdirSync } from 'fs';
 import { resolve } from 'path';

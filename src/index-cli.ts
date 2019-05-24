@@ -53,17 +53,19 @@ const cliProps = program.opts();
 if (cliProps.validationKeywords === undefined) {
   delete cliProps.validationKeywords;
 }
-
+const defaultProps: Partial<TeasonProps> = {
+  validationKeywords: ['faker']
+};
 const explorer = cosmiconfig('teason');
 explorer
   .search()
   .then((config) => {
     if (config) {
       debug('using config file found at', config.filepath);
-      return { ...config.config, ...cliProps };
+      return { ...defaultProps, ...config.config, ...cliProps };
     } else {
       debug('no config file found');
-      return cliProps;
+      return { ...defaultProps, ...cliProps };
     }
   })
   .then((props) => {
