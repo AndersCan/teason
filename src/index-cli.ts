@@ -47,12 +47,10 @@ program
  */
 
 program.parse(process.argv);
-const cliProps = program.opts();
+const cliPropsRaw = program.opts();
 
-// TODO
-if (cliProps.validationKeywords === undefined) {
-  delete cliProps.validationKeywords;
-}
+const cliProps: Partial<TeasonProps> = removeUndefinedKeys(cliPropsRaw);
+
 const defaultProps: Partial<TeasonProps> = {
   validationKeywords: ['faker']
 };
@@ -100,4 +98,15 @@ function writeJsonToFile(filepath: unknown, data: object): void {
     });
   }
   debug('writeJsonToFile invalid filepath', filepath);
+}
+
+function removeUndefinedKeys(json: any) {
+  const res: any = {};
+  for (const prop in json) {
+    const value = json[prop];
+    if (value !== undefined) {
+      res[prop] = value;
+    }
+  }
+  return res;
 }
