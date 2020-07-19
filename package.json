@@ -33,7 +33,7 @@
   "dependencies": {
     "@types/cosmiconfig": "^5.0.3",
     "chance": "^1.0.18",
-    "commander": "^4.0.1",
+    "commander": "^6.0.0",
     "cosmiconfig": "^5.2.1",
     "debug": "^4.1.1",
     "faker": "^4.1.0",
