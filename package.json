@@ -39,7 +39,7 @@
     "faker": "^4.1.0",
     "json-schema-faker": "^0.5.0-rc16",
     "typescript": "^3.4.5",
-    "typescript-json-schema": "^0.42.0"
+    "typescript-json-schema": "^0.50.1"
   },
   "devDependencies": {
     "ts-node": "^8.1.0",
